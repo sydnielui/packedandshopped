@@ -157,7 +157,13 @@ section{position:relative}
 .htag.new .br{color:#43591F}
 .htag .sz{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;border-top:1px dashed rgba(0,0,0,.2);padding-top:6px}
 @media (max-width:980px){.dr-grid{grid-template-columns:1fr}.stall{max-width:520px;width:100%;margin-inline:auto}}
-@media (max-width:560px){.hangers{grid-template-columns:repeat(2,minmax(0,1fr))}.hangers .hanger:nth-child(3){grid-column:1/-1}}
+@media (max-width:560px){
+  .hangers{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:34px}
+  .hangers .hanger:nth-child(3){grid-column:1/-1}
+  .rail-row .rail{display:none}
+  .hanger::before{content:"";position:absolute;left:-8px;right:-8px;top:0;height:9px;border-radius:5px;background:linear-gradient(#f5f6f7,#9aa0a6 55%,#dfe2e5);box-shadow:0 4px 6px -2px rgba(0,0,0,.3);z-index:2}
+  .hanger svg{margin-top:-4px}
+}
 
 .sticky-todo{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none;opacity:0;transform:translateY(16px);transition:opacity .3s,transform .3s}
 .sticky-todo.show{opacity:1;transform:none;pointer-events:auto}
@@ -359,7 +365,7 @@ section{position:relative}
 
 /* spill */
 .spill-wrap{position:relative;height:260vh;background:var(--wall)}
-.spill-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+.spill-sticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .spill-svg{position:absolute;inset:0;width:100%;height:100%}
 .spill-copy{position:absolute;left:clamp(16px,6vw,90px);top:14vh;max-width:540px;z-index:2}
 .spill-copy h2{font-size:clamp(3rem,9vw,7.5rem)}
@@ -398,7 +404,7 @@ section{position:relative}
 .film figure{margin:0}
 .film img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .film figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-top:8px;color:rgba(255,255,255,.8)}
-@media (max-width:600px){.film{grid-template-columns:1fr 1fr}.film figure:last-child{display:none}}
+@media (max-width:600px){.film{gap:8px;margin-top:40px}.film figcaption{font-size:.55rem;letter-spacing:.06em}}
 
 /* aisles */
 .aisles{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:70px}
@@ -513,10 +519,6 @@ footer i{display:block;width:180px;height:34px;margin:0 auto 14px;background:rep
 .bp-stub .bc2{height:64px;background:repeating-linear-gradient(90deg,#171615 0 2px,transparent 2px 3px,#171615 3px 6px,transparent 6px 7px,#171615 7px 8px,transparent 8px 11px)}
 .bp-stub .btn{justify-content:center;padding:12px 16px;font-size:.92rem}
 @media (max-width:700px){
-  .bpass{grid-template-columns:1fr}
-  .bp-main{border-radius:14px 14px 0 0}
-  .bp-stub{border-radius:0 0 14px 14px;border-left:0;border-top:2px dashed #cfcac1}
-  .bp-fields{grid-template-columns:repeat(2,1fr)}
   .route .pin-sub{font-size:22px}.route .pin-lbl{font-size:18px}
 }
 
@@ -542,51 +544,48 @@ img{max-width:100%}
   .route .pin-lbl{display:none}
   .route .pin-sub{font-size:44px!important}
   .route .pin-ring{stroke-width:3}
-  .fb-wrap{overflow:visible}
-  .fboard{min-width:0;padding:12px 12px 14px}
-  .fb-top b{font-size:1rem}.fb-top span{font-size:.55rem;letter-spacing:.12em}
-  .fb-row.head{display:none}
-  .fb-row{grid-template-columns:1fr auto;grid-template-areas:"d s" "c c";gap:4px 8px;padding:7px 0}
-  .fb-row > .flap:nth-child(1){display:none}
-  .fb-row > .flap:nth-child(2){grid-area:d}
-  .fb-row > .flap:nth-child(3){grid-area:c}
-  .fb-row > .flap:nth-child(4){grid-area:s}
-  .fboard .flap,.fly-wrap.live .fboard .flap{font-size:min(13px,3.2vw)!important;gap:1px}
-  .fboard .flap .f{width:1.05em;height:1.5em}
-  .fly-wrap.live .fly-sticky{gap:6px;padding-block:8px}
-  .fly-wrap.live .route{height:auto}
-  .fly-wrap.live .fb-row{padding:5px 0}
-  /* checkout lane on phones */
-  .lane-wrap.live{height:300vh}
-  .lane-wrap.live .lane-sticky{padding-block:10px;justify-content:flex-start;padding-top:56px}
-  .lane-wrap.live .lane-head{margin-bottom:10px;gap:6px}
-  .lane-wrap.live .lane-head h2{font-size:1.9rem;margin-top:6px!important}
-  .lane-wrap.live .lane-head .lede,.lane-wrap.live .lane-note,.lane-wrap.live .sign-lane{display:none}
-  .lane-wrap.live .lane-grid{gap:12px}
-  .lane-wrap.live .counter{padding:10px 0 14px}
-  .lane-wrap.live .belt{height:150px;margin-inline:10px}
+  footer{padding-bottom:110px}
+}
+
+@media (max-width:700px){
+  .lane-wrap.live{height:280vh;height:280svh}
+  .lane-wrap.live .lane-sticky{min-height:100vh;min-height:100svh;padding-block:64px 70px;justify-content:center}
+  .lane-wrap.live .lane-head{margin-bottom:14px}
+  .lane-wrap.live .lane-head h2{font-size:2rem}
+  .lane-wrap.live .lane-head .lede,.lane-wrap.live .sign-lane{display:none}
+  .lane-wrap.live .belt{height:170px;margin-inline:10px}
   .lane-wrap.live .scanner{left:10px;width:64px;top:10px;bottom:14px}
   .lane-wrap.live .scanner::before{inset:18px 10px}
   .lane-wrap.live .scanner .laser{left:14px;right:14px}
-  .lane-wrap.live .items{bottom:12px;gap:18px;padding-left:20px}
+  .lane-wrap.live .items{bottom:14px;gap:18px;padding-left:20px}
   .lane-wrap.live .prod{padding:7px 7px 6px}
-  .lane-wrap.live .prod .big{font-size:1.45rem!important}
+  .lane-wrap.live .prod .big{font-size:1.5rem!important}
   .lane-wrap.live .prod .nm{font-size:.62rem}
   .lane-wrap.live .prod .brandline,.lane-wrap.live .prod .net{font-size:.48rem}
   .lane-wrap.live .prod .bc{height:10px;width:40px;border-width:2px}
-  .lane-wrap.live .p-box{width:96px;height:124px}
-  .lane-wrap.live .p-can{width:70px;height:104px}
-  .lane-wrap.live .p-bottle{width:62px;height:124px;padding-top:34px}
+  .lane-wrap.live .p-box{width:100px;height:134px}
+  .lane-wrap.live .p-can{width:72px;height:110px}
+  .lane-wrap.live .p-bottle{width:64px;height:134px;padding-top:36px}
   .lane-wrap.live .p-bottle::before{top:-14px;width:24px;height:16px}
-  .lane-wrap.live .p-tub{width:98px;height:80px}
-  .lane-wrap.live .p-small{width:76px;height:88px}
-  .lane-wrap.live .p-bag{width:92px;height:122px}
-  .lane-wrap.live .receipt{font-size:.68rem;line-height:1.35;padding:12px 16px 18px;max-width:none}
-  .lane-wrap.live .receipt .store{font-size:1.05rem}
-  .lane-wrap.live .receipt hr{margin:6px 0}
-  .lane-wrap.live .receipt .rl small{display:none}
-  .lane-wrap.live .receipt hr ~ .c,.lane-wrap.live .receipt .bars{display:none}
-  footer{padding-bottom:110px}
+  .lane-wrap.live .p-tub{width:100px;height:84px}
+  .lane-wrap.live .p-small{width:78px;height:92px}
+  .lane-wrap.live .p-bag{width:96px;height:128px}
+  .receipt-home{max-width:380px;margin:0 auto;padding:0 16px 70px}
+  .receipt-home .receipt{font-size:.8rem}
+}
+.ticker{display:none;margin:14px 10px 0;background:var(--paper);color:#222;font-family:var(--mono);font-size:.78rem;padding:10px 14px;box-shadow:var(--shadow);border-radius:2px}
+.ticker .tk-top{display:flex;justify-content:space-between;color:#8c877f;font-size:.62rem;letter-spacing:.12em;margin-bottom:4px}
+.ticker .tk-line{display:flex;justify-content:space-between;gap:10px;font-weight:600;font-size:.95rem;font-variant-numeric:tabular-nums}
+.ticker.bump .tk-line{animation:tkb .35s ease}
+@keyframes tkb{0%{transform:translateY(6px);opacity:0}100%{transform:none;opacity:1}}
+.receipt-home:empty{display:none}
+@media (max-width:700px){
+  .lane-wrap.live .ticker{display:block}
+  .contact-grid > *{min-width:0}
+  .contact-bp{overflow:hidden;padding-bottom:30px}
+  .fboard .fb-row{gap:10px}
+  .fboard .flap{gap:1px}
+  .fboard{padding:14px 14px 16px}
 }
 </style>
 </head>
@@ -738,7 +737,7 @@ img{max-width:100%}
       <rect x="-500" y="470" width="2000" height="400" fill="url(#counterTop)"/>
       <rect x="-500" y="468" width="2000" height="3" fill="#fff" opacity=".7"/>
       <ellipse id="cupShadow" cx="600" cy="474" rx="70" ry="8" fill="#000" opacity=".18"/>
-      <g id="puddleG" filter="url(#wobble)"><ellipse id="puddle" cx="700" cy="480" rx="0" ry="0" fill="#6E8B3D"/></g>
+      <path id="puddle" d="" fill="#6E8B3D"/>
       <path id="stream" d="" fill="none" stroke="#7a9a41" stroke-width="16" stroke-linecap="round" opacity="0"/>
       <g id="cup">
         <g clip-path="url(#cupIn)">
@@ -913,6 +912,7 @@ img{max-width:100%}
           </div>
           <div class="scanner" id="scanner" aria-hidden="true"><div class="laser"></div><div class="beep">BEEP</div></div>
         </div>
+        <div class="ticker" id="ticker" aria-hidden="true"><div class="tk-top"><span>SYD'S · LAST 60 DAYS</span><span id="tkCount">0/6 SCANNED</span></div><div class="tk-line" id="tkLine"><span>SCAN TO START</span><span>…</span></div></div>
         <div>
           <div class="receipt" id="receipt" aria-label="Receipt of Syd's TikTok stats">
             <div class="c"><div class="store">SYD'S</div>@SYDTHELAZYSLOTH · TIKTOK<br>LAST 60 DAYS · 07/24 – 09/21/2026</div>
@@ -939,6 +939,7 @@ img{max-width:100%}
     </div>
   </div>
 </section>
+<div class="receipt-home" id="receiptHome"></div>
 
 <section class="travel pad" id="travel">
   <div class="wrap">
@@ -1221,7 +1222,14 @@ img{max-width:100%}
     laneLive = !reduce && (innerWidth>900 ? innerHeight>680 : innerHeight>=540);
     lane.classList.toggle('live',laneLive);
     if(!laneLive){ items.style.transform=''; lines.forEach(l=>l.classList.remove('pending')); prods.forEach(p=>p.classList.add('scanned')); }
+    const small = laneLive && innerWidth<=700;
+    const rc=document.getElementById('receipt'), note=document.querySelector('.lane-note'), home=document.getElementById('receiptHome');
+    if(small && rc.parentElement!==home){ rcSlot=rc.parentElement; home.appendChild(rc); home.appendChild(note); lines.forEach(l=>l.classList.remove('pending')); }
+    if(!small && rcSlot && rc.parentElement===home){ rcSlot.appendChild(rc); rcSlot.appendChild(note); }
   }
+  let rcSlot=null; const tkLine=document.getElementById('tkLine'), tkCount=document.getElementById('tkCount'), ticker=document.getElementById('ticker');
+  const tkData=[['POST VIEWS','6,000,000'],['LIKES','850,500'],['SHARES','151,500'],['PROFILE VIEWS','23,500'],['COMMENTS','5,800'],['VIEW GROWTH','+673.4%']];
+  let tkLast=-1;
   function laneFrame(){
     const r=lane.getBoundingClientRect();
     const q=clamp(-r.top/Math.max(1,r.height-innerHeight));
@@ -1234,7 +1242,9 @@ img{max-width:100%}
     let count=0;
     prods.forEach(p=>{ const pr=p.getBoundingClientRect(); const done=pr.left+pr.width/2<scanX; p.classList.toggle('scanned',done); if(done)count++; });
     const all=q>0.97;
-    lines.forEach(l=>{ const i=+l.dataset.l; l.classList.toggle('pending', i<6 ? i>=count : !all); });
+    if(!document.getElementById('receiptHome').contains(document.getElementById('receipt'))) lines.forEach(l=>{ const i=+l.dataset.l; l.classList.toggle('pending', i<6 ? i>=count : !all); });
+    if(count!==tkLast){ tkLast=count; tkCount.textContent=count+'/6 SCANNED'; tkLine.innerHTML = count ? '<span>BEEP · '+tkData[count-1][0]+'</span><span>'+tkData[count-1][1]+'</span>' : '<span>SCAN TO START</span><span>…</span>'; if(all||count===6){} ticker.classList.remove('bump'); void ticker.offsetWidth; ticker.classList.add('bump'); }
+    if(all && count===6){ tkLine.innerHTML='<span>ENGAGEMENT RATE</span><span>16.8%</span>'; tkCount.textContent='TOTAL ↓'; tkLast=-2; }
     if(count!==lastScan){ if(count>lastScan&&lastScan>=0){ scanner.classList.add('hit'); hitT=performance.now(); } lastScan=count; }
     if(performance.now()-hitT>260) scanner.classList.remove('hit');
   }
@@ -1265,8 +1275,9 @@ img{max-width:100%}
     } else stream.setAttribute('opacity','0');
     const pg=clamp((q-0.24)/0.66);
     const R=ease(pg)*1500;
-    puddle.setAttribute('cx',(lip[0]+50).toFixed(1)); puddle.setAttribute('cy','480');
-    puddle.setAttribute('rx',R.toFixed(1)); puddle.setAttribute('ry',(R*(0.28+0.72*ease(pg))).toFixed(1));
+    { const pcx=lip[0]+50, pcy=480, ry=R*(0.28+0.72*ease(pg)); let d='';
+      if(R>0.5){ for(let k=0;k<=48;k++){ const a=k/48*Math.PI*2; const w=1+0.07*Math.sin(a*5+1.3)+0.05*Math.sin(a*9+.4); const x=pcx+Math.cos(a)*R*w, y=pcy+Math.sin(a)*ry*w; d+=(k?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); } d+='Z'; }
+      puddle.setAttribute('d',d); }
     cup.style.opacity=(1-clamp((q-0.68)/0.12)).toFixed(2);
     copyEl.style.opacity=(1-clamp((q-0.5)/0.15)).toFixed(2);
     const rv=clamp((q-0.8)/0.15);
@@ -1277,6 +1288,9 @@ img{max-width:100%}
   const spillSvg=document.getElementById('spillsvg');
   function fitSpill(){ const r=innerWidth/innerHeight; spillSvg.setAttribute('viewBox', r<0.9 ? '470 0 400 620' : (r<1.3 ? '250 0 750 620' : '0 0 1000 620')); }
   fitSpill(); addEventListener('resize',fitSpill);
+  function fitZoom(el, natural){ if(!el) return; const box=el.parentElement.clientWidth; if(innerWidth<=700 && box<natural){ el.style.width=natural+'px'; el.style.minWidth=natural+'px'; el.style.zoom=(box/natural).toFixed(4); } else { el.style.width=''; el.style.minWidth=''; el.style.zoom=''; } }
+  function fitAll(){ fitZoom(document.getElementById('fboard'),700); fitZoom(document.querySelector('.contact .bpass'),720); }
+  fitAll(); addEventListener('resize',fitAll);
   function frame(){ if(laneLive) laneFrame(); if(!reduce) spillFrame(); travelFrame(); navFrame(); curtainFrame(); feedFrame(); requestAnimationFrame(frame); }
   setupLane(); addEventListener('resize',setupLane);
   requestAnimationFrame(frame);
