@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Syd (@sydthelazysloth), UGC and lifestyle creator: hauls, cozy home, iced matcha and travel.">
-<title>Syd's Trip Prep</title>
+<title>Packed &amp; Shopped</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Permanent+Marker&family=Caveat:wght@500;700&display=swap">
@@ -522,6 +522,41 @@ footer i{display:block;width:180px;height:34px;margin:0 auto 14px;background:rep
 }
 
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- standalone reset (GitHub Pages) ---- */
+html,body{margin:0}
+html{overflow-x:clip}
+img{max-width:100%}
+[hidden]{display:none!important}
+.htag .sz{flex-wrap:wrap;gap:2px 8px}
+/* ---- phone fixes ---- */
+@media (max-width:700px){
+  .nav{top:calc(10px + env(safe-area-inset-top,0px))!important;right:10px}
+  .nav .navright{padding:4px 10px 4px 4px;gap:8px;box-shadow:0 6px 16px -10px rgba(0,0,0,.4)}
+  .nav .navflap{font-size:.6rem}
+  .nav .open{font-size:0!important;gap:0}
+  .nav .open::after{content:"Open";font-size:.6rem;letter-spacing:.1em;margin-left:6px}
+  .sticky-todo{right:10px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .st-note{font-size:1.1rem;padding:7px 12px 7px 9px;gap:8px;transform:rotate(-1deg);max-width:100%}
+  .st-note .ct{font-size:.62rem;padding:2px 5px}
+  .st-note .nx{white-space:normal;line-height:1.05}
+  .feed{overscroll-behavior:auto}
+  .route .pin-lbl{display:none}
+  .route .pin-sub{font-size:44px!important}
+  .route .pin-ring{stroke-width:3}
+  .fb-wrap{overflow:visible}
+  .fboard{min-width:0;padding:12px 10px 14px}
+  .fb-top b{font-size:1rem}.fb-top span{font-size:.55rem;letter-spacing:.12em}
+  .fb-row.head{display:none}
+  .fb-row{grid-template-columns:auto 1fr;grid-template-areas:"f d" "c s";gap:5px 8px;padding:8px 0}
+  .fb-row > .flap:nth-child(1){grid-area:f}
+  .fb-row > .flap:nth-child(2){grid-area:d}
+  .fb-row > .flap:nth-child(3){grid-area:c}
+  .fb-row > .flap:nth-child(4){grid-area:s;justify-self:end}
+  .fboard .flap,.fly-wrap.live .fboard .flap{font-size:9.5px!important;gap:1px}
+  .fboard .flap .f{width:1.05em;height:1.55em}
+  footer{padding-bottom:110px}
+}
 </style>
 </head>
 <body>
@@ -1142,7 +1177,7 @@ footer i{display:block;width:180px;height:34px;margin:0 auto 14px;background:rep
   /* phone feed scroll */
   const phoneEl=document.getElementById('phone'), feed=document.getElementById('feed');
   let feedUser=false; ['wheel','touchstart','pointerdown'].forEach(ev=>feed.addEventListener(ev,()=>{feedUser=true;},{passive:true}));
-  function feedFrame(){ if(feedUser||reduce) return; const r=phoneEl.getBoundingClientRect(); const p=clamp((innerHeight*0.95-r.top)/(innerHeight*0.95+r.height*0.35)); const max=Math.max(0,feed.scrollHeight-feed.clientHeight); feed.scrollTop=Math.round(p*max); }
+  function feedFrame(){ if(feedUser||reduce||innerWidth<700) return; const r=phoneEl.getBoundingClientRect(); const p=clamp((innerHeight*0.95-r.top)/(innerHeight*0.95+r.height*0.35)); const max=Math.max(0,feed.scrollHeight-feed.clientHeight); feed.scrollTop=Math.round(p*max); }
   /* dressing room curtain */
   const stall=document.getElementById('stall'), curtain=document.getElementById('curtain');
   function curtainFrame(){ const r=stall.getBoundingClientRect(); const p=reduce?1:clamp((innerHeight*0.85-r.top)/(innerHeight*0.55)); const e=ease(p); curtain.style.width=(86-72*e).toFixed(1)+'%'; curtain.style.backgroundSize=(100-10*e)+'% 100%'; }
