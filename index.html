@@ -583,9 +583,25 @@ img{max-width:100%}
   .lane-wrap.live .ticker{display:block}
   .contact-grid > *{min-width:0}
   .contact-bp{overflow:hidden;padding-bottom:30px}
-  .fboard .fb-row{gap:10px}
-  .fboard .flap{gap:1px}
-  .fboard{padding:14px 14px 16px}
+}
+/* ---- phones: play animations in place instead of pinning (iOS-safe) ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (max-width:700px){
+  .spill-wrap{height:auto!important;background:var(--wall)}
+  .spill-sticky{position:relative!important;height:92vh;height:92svh}
+  .lane-wrap.live{height:auto!important}
+  .lane-wrap.live .lane-sticky{position:relative!important;min-height:0!important;padding-block:48px 26px!important}
+  .receipt-home{background:var(--wall-2);padding-top:6px;border-bottom:1px solid var(--rule)}
+  .fly-wrap.live{height:auto!important}
+  .fly-wrap.live .fly-sticky{position:relative!important;height:auto!important;padding-block:10px}
+  .fb-wrap{overflow:visible}
+  .fboard{min-width:0!important;padding:12px 10px 14px}
+  .fb-top b{font-size:1rem}.fb-top span{font-size:.5rem;letter-spacing:.1em}
+  .fb-row.head{display:none}
+  .fb-row{grid-template-columns:auto 1fr auto;gap:6px;padding:6px 0}
+  .fb-row > .flap:nth-child(1){display:none}
+  .fboard .flap,.fly-wrap.live .fboard .flap{font-size:calc((100vw - 32px - 20px - 12px - 37px) / 38.9)!important;gap:1px}
+  .fboard .flap .f{width:1.05em;height:1.55em}
 }
 </style>
 </head>
@@ -982,13 +998,13 @@ img{max-width:100%}
       <div class="fboard" id="fboard" aria-label="Departures board">
         <div class="fb-top"><b>DEPARTURES</b><span>SYD'S INTERNATIONAL · TERMINAL B</span></div>
         <div class="fb-row head"><span style="width:calc(7*1.12em + 12px)"><i>FLIGHT</i></span><span style="width:calc(11*1.12em + 20px)"><i>DESTINATION</i></span><span><i>CONTENT</i></span><span style="width:calc(9*1.12em + 16px)"><i>STATUS</i></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 212" data-n="7"></span><span class="flap" data-t="NEW YORK" data-n="11"></span><span class="flap" data-t="CITY OUTFITS" data-n="20"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 201" data-n="7"></span><span class="flap" data-t="NEW JERSEY" data-n="11"></span><span class="flap" data-t="PORK ROLL/TAYLOR HAM" data-n="20"></span><span class="flap red" data-t="DISPUTED" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 732" data-n="7"></span><span class="flap" data-t="CENTRAL NJ" data-n="11"></span><span class="flap" data-t="YES IT EXISTS" data-n="20"></span><span class="flap green" data-t="CONFIRMED" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 713" data-n="7"></span><span class="flap" data-t="HOUSTON" data-n="11"></span><span class="flap" data-t="TEXAS SIZED HAULS" data-n="20"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 808" data-n="7"></span><span class="flap" data-t="HONOLULU" data-n="11"></span><span class="flap" data-t="BEACH SUNSETS" data-n="20"></span><span class="flap " data-t="LANDED" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 101" data-n="7"></span><span class="flap" data-t="DISNEY" data-n="11"></span><span class="flap" data-t="PARK DAYS" data-n="20"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
-        <div class="fb-row"><span class="flap" data-t="SYD 365" data-n="7"></span><span class="flap" data-t="YOUR BRAND" data-n="11"></span><span class="flap" data-t="NEXT COLLAB" data-n="20"></span><span class="flap amber blink" data-t="BOARDING" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 212" data-n="7"></span><span class="flap" data-t="NEW YORK" data-n="11"></span><span class="flap" data-t="CITY OUTFITS" data-n="17"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 201" data-n="7"></span><span class="flap" data-t="NEW JERSEY" data-n="11"></span><span class="flap" data-t="IT'S PORK ROLL" data-n="17"></span><span class="flap red" data-t="DISPUTED" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 732" data-n="7"></span><span class="flap" data-t="CENTRAL NJ" data-n="11"></span><span class="flap" data-t="YES IT EXISTS" data-n="17"></span><span class="flap green" data-t="CONFIRMED" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 713" data-n="7"></span><span class="flap" data-t="HOUSTON" data-n="11"></span><span class="flap" data-t="TEXAS SIZED HAULS" data-n="17"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 808" data-n="7"></span><span class="flap" data-t="HONOLULU" data-n="11"></span><span class="flap" data-t="BEACH SUNSETS" data-n="17"></span><span class="flap " data-t="LANDED" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 101" data-n="7"></span><span class="flap" data-t="DISNEY" data-n="11"></span><span class="flap" data-t="PARK DAYS" data-n="17"></span><span class="flap green" data-t="ON TIME" data-n="9"></span></div>
+        <div class="fb-row"><span class="flap" data-t="SYD 365" data-n="7"></span><span class="flap" data-t="YOUR BRAND" data-n="11"></span><span class="flap" data-t="NEXT COLLAB" data-n="17"></span><span class="flap amber blink" data-t="BOARDING" data-n="9"></span></div>
       </div>
     </div>
 
@@ -1126,9 +1142,15 @@ img{max-width:100%}
   const flyWrap=document.getElementById('flyWrap'), fboardEl=document.getElementById('fboard');
   let flyLive=false;
   function setupFly(){ flyLive=!reduce && (innerWidth>900 ? innerHeight>=680 : innerHeight>=540); flyWrap.classList.toggle('live',flyLive); }
+  const MOB=()=>innerWidth<=700;
+  function makeTL(el,dur){ const o={t0:0,dur:dur,p(){ return o.t0? clamp((performance.now()-o.t0)/o.dur):0; }};
+    if('IntersectionObserver' in window){ const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting && !o.t0 && MOB()){ o.t0=performance.now(); } }); },{threshold:.55}); io.observe(el); }
+    return o; }
+  const tlFly=makeTL(document.getElementById('route'),5200);
   function travelFrame(){
     let p;
     if(reduce) p=1;
+    else if(MOB()){ p=tlFly.p(); }
     else if(flyLive){ const r=flyWrap.getBoundingClientRect(); const q=clamp((0-r.top)/Math.max(1,r.height-innerHeight)); p=clamp((q-0.08)/0.84); }
     else { const r=fboardEl.getBoundingClientRect(); p=clamp((innerHeight*0.8-r.top)/(innerHeight*0.6)); }
     placePlane(p); boardFrame(p);
@@ -1230,11 +1252,12 @@ img{max-width:100%}
   let rcSlot=null; const tkLine=document.getElementById('tkLine'), tkCount=document.getElementById('tkCount'), ticker=document.getElementById('ticker');
   const tkData=[['POST VIEWS','6,000,000'],['LIKES','850,500'],['SHARES','151,500'],['PROFILE VIEWS','23,500'],['COMMENTS','5,800'],['VIEW GROWTH','+673.4%']];
   let tkLast=-1;
+  const tlLane=makeTL(document.getElementById('belt'),6000);
   function laneFrame(){
     const r=lane.getBoundingClientRect();
-    const q=clamp(-r.top/Math.max(1,r.height-innerHeight));
+    const q=MOB()? tlLane.p() : clamp(-r.top/Math.max(1,r.height-innerHeight));
     const bw=belt.clientWidth, iw=items.scrollWidth;
-    const start=bw*0.42, end=-(iw)+120;
+    const start=bw*0.42, end=MOB()? -iw : -(iw)+120;
     const x=start+(end-start)*q;
     items.style.transform='translateX('+x.toFixed(1)+'px)';
     belt.style.backgroundPosition=(x*1).toFixed(1)+'px 0,0 0';
@@ -1243,8 +1266,9 @@ img{max-width:100%}
     prods.forEach(p=>{ const pr=p.getBoundingClientRect(); const done=pr.left+pr.width/2<scanX; p.classList.toggle('scanned',done); if(done)count++; });
     const all=q>0.97;
     if(!document.getElementById('receiptHome').contains(document.getElementById('receipt'))) lines.forEach(l=>{ const i=+l.dataset.l; l.classList.toggle('pending', i<6 ? i>=count : !all); });
-    if(count!==tkLast){ tkLast=count; tkCount.textContent=count+'/6 SCANNED'; tkLine.innerHTML = count ? '<span>BEEP · '+tkData[count-1][0]+'</span><span>'+tkData[count-1][1]+'</span>' : '<span>SCAN TO START</span><span>…</span>'; if(all||count===6){} ticker.classList.remove('bump'); void ticker.offsetWidth; ticker.classList.add('bump'); }
-    if(all && count===6){ tkLine.innerHTML='<span>ENGAGEMENT RATE</span><span>16.8%</span>'; tkCount.textContent='TOTAL ↓'; tkLast=-2; }
+    if(all && count===6){ if(tkLast!==99){ tkLast=99; tkLine.innerHTML='<span>ENGAGEMENT RATE</span><span>16.8%</span>'; tkCount.textContent='TOTAL ↓'; ticker.classList.remove('bump'); void ticker.offsetWidth; ticker.classList.add('bump'); } }
+    else if(count!==tkLast){ tkLast=count; tkCount.textContent=count+'/6 SCANNED'; tkLine.innerHTML = count ? '<span>BEEP · '+tkData[count-1][0]+'</span><span>'+tkData[count-1][1]+'</span>' : '<span>SCAN TO START</span><span>…</span>'; if(all||count===6){} ticker.classList.remove('bump'); void ticker.offsetWidth; ticker.classList.add('bump'); }
+
     if(count!==lastScan){ if(count>lastScan&&lastScan>=0){ scanner.classList.add('hit'); hitT=performance.now(); } lastScan=count; }
     if(performance.now()-hitT>260) scanner.classList.remove('hit');
   }
@@ -1254,9 +1278,10 @@ img{max-width:100%}
   const stream=document.getElementById('stream'), puddle=document.getElementById('puddle'), copyEl=document.getElementById('spillCopy'), reveal=document.getElementById('spillReveal'), cupShadow=document.getElementById('cupShadow');
   const PX=663, PY=470, CX=600, CY=366; // pivot: bottom-right of cup (approx), cup centre
   function rot(x,y,a){ const c=Math.cos(a), s=Math.sin(a); return [PX+(x-PX)*c-(y-PY)*s, PY+(x-PX)*s+(y-PY)*c]; }
+  const tlSpill=makeTL(document.querySelector('.spill-sticky'),5200);
   function spillFrame(){
     const r=spill.getBoundingClientRect();
-    const q=clamp(-r.top/Math.max(1,r.height-innerHeight));
+    const q=MOB()? tlSpill.p() : clamp(-r.top/Math.max(1,r.height-innerHeight));
     const tip=ease(clamp(q/0.32));
     const deg=tip*96, a=deg*Math.PI/180;
     cup.setAttribute('transform','rotate('+deg.toFixed(2)+' '+PX+' '+PY+')');
@@ -1274,8 +1299,8 @@ img{max-width:100%}
       stream.setAttribute('opacity',flow.toFixed(2)); stream.setAttribute('stroke-width',(6+flow*14).toFixed(1));
     } else stream.setAttribute('opacity','0');
     const pg=clamp((q-0.24)/0.66);
-    const R=ease(pg)*1500;
-    { const pcx=lip[0]+50, pcy=480, ry=R*(0.28+0.72*ease(pg)); let d='';
+    const R=ease(pg)*(MOB()?700:1500);
+    { const pcx=MOB()? Math.min(lip[0]+50,690) : lip[0]+50, pcy=480, ry=R*(0.28+0.72*ease(pg)); let d='';
       if(R>0.5){ for(let k=0;k<=48;k++){ const a=k/48*Math.PI*2; const w=1+0.07*Math.sin(a*5+1.3)+0.05*Math.sin(a*9+.4); const x=pcx+Math.cos(a)*R*w, y=pcy+Math.sin(a)*ry*w; d+=(k?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); } d+='Z'; }
       puddle.setAttribute('d',d); }
     cup.style.opacity=(1-clamp((q-0.68)/0.12)).toFixed(2);
@@ -1289,7 +1314,7 @@ img{max-width:100%}
   function fitSpill(){ const r=innerWidth/innerHeight; spillSvg.setAttribute('viewBox', r<0.9 ? '470 0 400 620' : (r<1.3 ? '250 0 750 620' : '0 0 1000 620')); }
   fitSpill(); addEventListener('resize',fitSpill);
   function fitZoom(el, natural){ if(!el) return; const box=el.parentElement.clientWidth; if(innerWidth<=700 && box<natural){ el.style.width=natural+'px'; el.style.minWidth=natural+'px'; el.style.zoom=(box/natural).toFixed(4); } else { el.style.width=''; el.style.minWidth=''; el.style.zoom=''; } }
-  function fitAll(){ fitZoom(document.getElementById('fboard'),700); fitZoom(document.querySelector('.contact .bpass'),720); }
+  function fitAll(){ fitZoom(document.querySelector('.contact .bpass'),720); }
   fitAll(); addEventListener('resize',fitAll);
   function frame(){ if(laneLive) laneFrame(); if(!reduce) spillFrame(); travelFrame(); navFrame(); curtainFrame(); feedFrame(); requestAnimationFrame(frame); }
   setupLane(); addEventListener('resize',setupLane);
