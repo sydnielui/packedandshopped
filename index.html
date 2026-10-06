@@ -1458,8 +1458,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       bump(); render(ideas,p);
       say(PG_WORKER_URL ? 'Three ideas for '+p+', fresh off the rack.' : 'Sample ideas shown. Connect the idea generator to make them custom.');
       rack.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
-    }).catch(function(){
-      say('The idea generator didn\u2019t respond. Try again in a minute, or email me at '+PG_EMAIL+'.',true);
+    }).catch(function(err){
+      var m=err&&err.message||'';
+      var fromServer=m && !/fetch|network|load failed|^failed$|^empty$/i.test(m);
+      say(fromServer ? m+' You can also email me at '+PG_EMAIL+'.' : 'The idea generator didn\u2019t respond. Try again in a minute, or email me at '+PG_EMAIL+'.',true);
     }).finally(function(){ btn.disabled=false; });
   });
 })();
