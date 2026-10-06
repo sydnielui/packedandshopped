@@ -605,6 +605,43 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .fboard .flap,.fly-wrap.live .fboard .flap{font-size:calc((100vw - 32px - 20px - 12px - 37px) / 38.9)!important;gap:1px}
   .fboard .flap .f{width:1.05em;height:1.55em}
 }
+/* ===== 12:30 PM · Try it on (pitch generator) ===== */
+#pitch .pg-form{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:clamp(20px,3vw,32px);box-shadow:var(--shadow);max-width:920px}
+#pitch .pg-field{display:grid;gap:8px}
+#pitch .pg-wide{grid-column:1/-1}
+#pitch label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+#pitch label small{text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:.85rem;color:var(--ink-3)}
+#pitch input,#pitch textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;padding:12px 14px;width:100%}
+#pitch textarea{min-height:96px;resize:vertical}
+#pitch input:focus-visible,#pitch textarea:focus-visible,#pitch .btn:focus-visible,#pitch .pg-pick:focus-visible{outline:3px solid var(--matcha);outline-offset:2px}
+#pitch .pg-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+#pitch .btn[disabled]{opacity:.55;cursor:wait;transform:none}
+#pitch .pg-status{margin:0;font-size:.95rem;color:var(--ink-2)}
+#pitch .pg-status.err{color:var(--sale);font-weight:600}
+#pitch .pg-rack{position:relative;margin-top:56px}
+#pitch .pg-rack::before{content:"";position:absolute;left:-12px;right:-12px;top:0;height:8px;border-radius:4px;background:linear-gradient(var(--steel),#8e9295);box-shadow:0 3px 6px -3px rgba(0,0,0,.4)}
+#pitch .pg-tags{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+#pitch .pg-item{position:relative;margin-top:46px;transform-origin:50% -46px}
+#pitch .pg-tag{position:relative;height:100%;background:#fdfbf5;border:1px solid #d9d2c2;border-radius:6px 6px 14px 14px;padding:34px 20px 22px;box-shadow:0 18px 26px -18px rgba(0,0,0,.45);clip-path:polygon(16% 0,84% 0,100% 6%,100% 100%,0 100%,0 6%)}
+#pitch .pg-tag::before{content:"";position:absolute;top:12px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;border:1.5px solid #bdb5a3;background:var(--wall)}
+#pitch .pg-string{position:absolute;top:-46px;left:50%;width:1px;height:58px;background:#8d8577;z-index:1}
+#pitch .pg-tag.new{background:#e6efe0;border-color:#9fb78a}
+#pitch .pg-tag.sale{background:var(--tag);border-color:#d8b52a}
+#pitch .pg-fmt{font-family:var(--sans);font-weight:900;font-size:.82rem;letter-spacing:.02em;font-stretch:125%;font-variation-settings:"wdth" 125;text-align:center;border-bottom:1px solid rgba(0,0,0,.15);padding-bottom:8px;margin-bottom:12px}
+#pitch .pg-tag h3{margin:0 0 10px;font-size:1.2rem;font-weight:800;line-height:1.2}
+#pitch .pg-hook{margin:0 0 14px;font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.4}
+#pitch .pg-shots{margin:0 0 14px;padding:0;list-style:none;counter-reset:s;border-top:1px dashed rgba(0,0,0,.2)}
+#pitch .pg-shots li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:6px;padding:7px 0;border-bottom:1px dashed rgba(0,0,0,.2);font-size:.92rem;line-height:1.4}
+#pitch .pg-shots li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:.68rem;color:var(--ink-3);padding-top:3px}
+#pitch .pg-why{margin:0 0 16px;font-size:.88rem;line-height:1.45;color:var(--ink-2)}
+#pitch .pg-pick{font-weight:700;color:var(--matcha-deep);text-decoration:underline;text-underline-offset:3px}
+#pitch .pg-note{margin:26px 0 0;font-size:.92rem;color:var(--ink-3);max-width:62ch}
+@keyframes pg-swing{0%{transform:rotate(-6deg)}55%{transform:rotate(2.5deg)}100%{transform:rotate(0)}}
+#pitch .pg-item.in{animation:pg-swing .75s ease-out both}
+#pitch .pg-item.in:nth-child(2){animation-delay:.09s}
+#pitch .pg-item.in:nth-child(3){animation-delay:.18s}
+@media (prefers-reduced-motion:reduce){#pitch .pg-item.in{animation:none}}
+@media (max-width:860px){#pitch .pg-form{grid-template-columns:1fr}#pitch .pg-tags{grid-template-columns:1fr;max-width:460px}#pitch .pg-rack::before{display:none}}
 </style>
 </head>
 <body>
@@ -902,6 +939,34 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <div><b><span>03</span>Film &amp; edit</b><p>Natural light, real reactions, captions in my voice.</p></div>
       <div><b><span>04</span>Deliver</b><p>Files ready for your ads or organic posts.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="pad" id="pitch" aria-labelledby="pitch-title">
+  <div class="wrap">
+    <div class="label">12:30 PM · Try it on</div>
+    <h2 class="display" id="pitch-title" style="margin-top:12px;max-width:17ch">Bring your product. <span class="it">I'll show you the videos.</span></h2>
+    <p class="lede" style="margin-top:16px">Tell me what you sell and get three video ideas for it, the way I'd film them. They're AI-drafted starting points, like step 02 of my process, and I'll tailor the one you like with you before filming.</p>
+    <form class="pg-form" id="pg-form" novalidate>
+      <div class="pg-field">
+        <label for="pg-product">Product name</label>
+        <input id="pg-product" name="product" maxlength="80" required placeholder="Glow Drops Serum" autocomplete="off">
+      </div>
+      <div class="pg-field">
+        <label for="pg-audience">Who it's for <small>(optional)</small></label>
+        <input id="pg-audience" name="audience" maxlength="120" placeholder="College students with oily skin" autocomplete="off">
+      </div>
+      <div class="pg-field pg-wide">
+        <label for="pg-details">What it is and why people love it</label>
+        <textarea id="pg-details" name="details" maxlength="500" required placeholder="A lightweight niacinamide serum that smooths texture. Fragrance-free, $18."></textarea>
+      </div>
+      <div class="pg-actions">
+        <button class="btn" type="submit" id="pg-submit">Draft 3 video ideas</button>
+        <p class="pg-status" id="pg-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <div class="pg-rack" id="pg-rack" hidden><ul class="pg-tags" id="pg-tags"></ul></div>
+    <p class="pg-note" id="pg-note" hidden>Like one? Tap "Pitch me this one" to email me the idea, and I'll send rates and availability.</p>
   </div>
 </section>
 
@@ -1209,10 +1274,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* nav clock + to-do list */
   const navFlap=document.getElementById('navflap'); buildFlap(navFlap);
-  const stopIds=['top','spill','about','aisles','services','checkout-lane','travel','contact'];
+  const stopIds=['top','spill','about','aisles','services','pitch','checkout-lane','travel','contact'];
   const stopEls=stopIds.map(id=>document.getElementById(id));
-  const times=['8:00 AM','9:00 AM','9:15 AM','10:30 AM','12:00 PM','1:30 PM','5:00 PM','6:15 PM'];
-  const todoIdx={1:0,2:0,3:1,4:2,5:3,6:4,7:5};
+  const times=['8:00 AM','9:00 AM','9:15 AM','10:30 AM','12:00 PM','12:30 PM','1:30 PM','5:00 PM','6:15 PM'];
+  const todoIdx={1:0,2:0,3:1,4:2,5:2,6:3,7:4,8:5};
   const miniList=document.getElementById('miniList'); miniList.innerHTML=document.getElementById('todoList').innerHTML;
   const todoLis=[...document.querySelectorAll('#todoList li, #miniList li')];
   const itemNames=[...document.querySelectorAll('#todoList li .tx')].map(e=>e.textContent);
@@ -1223,7 +1288,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   function navFrame(){
     const mark=innerHeight*0.72, atEnd=innerHeight+scrollY>=document.documentElement.scrollHeight-4;
     let cur=0; stopEls.forEach((el,i)=>{ if(el.getBoundingClientRect().top<mark) cur=i; });
-    if(atEnd) cur=7;
+    if(atEnd) cur=stopIds.length-1;
     setFlap(navFlap,times[cur]);
     const reached = cur===0 ? -1 : todoIdx[cur];
     let nDone=0;
@@ -1335,5 +1400,69 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 })();
 </script>
 
+<script>
+/* 12:30 PM · Try it on: pitch generator */
+(function(){
+  // Paste your Cloudflare Worker URL here. While empty, the section shows sample ideas.
+  var PG_WORKER_URL = "https://syd-pitch.sydnieplui.workers.dev/";
+  var PG_EMAIL = "hellosydniepaige@gmail.com";
+  var PG_MAX = 3; // drafts per visit
+  var TAG_STYLES = ["", "new", "sale"];
+
+  var form=document.getElementById('pg-form'); if(!form) return;
+  var btn=document.getElementById('pg-submit'), statusEl=document.getElementById('pg-status');
+  var rack=document.getElementById('pg-rack'), list=document.getElementById('pg-tags'), note=document.getElementById('pg-note');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function count(){ try{ return +(sessionStorage.getItem('pg-count')||0); }catch(e){ return 0; } }
+  function bump(){ try{ sessionStorage.setItem('pg-count', String(count()+1)); }catch(e){} }
+  function say(msg,err){ statusEl.textContent=msg; statusEl.classList.toggle('err',!!err); }
+  function el(t,c,txt){ var n=document.createElement(t); if(c) n.className=c; if(txt!=null) n.textContent=txt; return n; }
+
+  function sample(p){ return [
+    {format:"Haul & first reaction",title:"Found it, had to try it",hook:"I wasn't planning to buy anything today, and then I found "+p+".",shots:["Walking in with an iced matcha","Spotting it on the shelf","First try at home, honest reaction"],why:"Hauls are my most-watched format, and my audience trusts first reactions."},
+    {format:"Get ready with me",title:"Part of my real morning",hook:"Things that actually made it into my morning routine:",shots:["Coffee, planner, and a Jack-Jack cameo","Using "+p+" in my routine","Final look before heading out"],why:"Shows it in a real routine instead of an ad."},
+    {format:"Demo & review",title:"Is it worth it? Honest answer",hook:"Everyone keeps asking if "+p+" is worth it, so here's the truth.",shots:["Close-up of the product and packaging","How it works, step by step","One-week check-in"],why:"Answers what buyers want to know before they add to cart."}
+  ]; }
+
+  function render(ideas,p){
+    list.innerHTML='';
+    ideas.slice(0,3).forEach(function(d,i){
+      var li=el('li','pg-item'); li.appendChild(el('span','pg-string'));
+      var card=el('div','pg-tag'+(TAG_STYLES[i]?' '+TAG_STYLES[i]:'')); li.appendChild(card);
+      card.appendChild(el('div','pg-fmt',d.format));
+      card.appendChild(el('h3',null,d.title));
+      card.appendChild(el('p','pg-hook','\u201C'+d.hook+'\u201D'));
+      var ol=el('ol','pg-shots'); (d.shots||[]).forEach(function(s){ ol.appendChild(el('li',null,s)); }); card.appendChild(ol);
+      if(d.why) card.appendChild(el('p','pg-why',d.why));
+      var a=el('a','pg-pick','Pitch me this one');
+      a.href='mailto:'+PG_EMAIL+'?subject='+encodeURIComponent('Collab idea for '+p+': '+d.title)+'&body='+encodeURIComponent('Hi Syd,\n\nWe tried your idea generator and liked this one for '+p+':\n\n'+d.format+': '+d.title+'\nHook: '+d.hook+'\n\nCan you send rates and availability?\n');
+      card.appendChild(a); list.appendChild(li);
+      if(!reduce) requestAnimationFrame(function(){ li.classList.add('in'); });
+    });
+    rack.hidden=false; note.hidden=false;
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var p=form.product.value.trim(), d=form.details.value.trim(), a=form.audience.value.trim();
+    if(!p||!d){ say('Add a product name and a short description, then try again.',true); (p?form.details:form.product).focus(); return; }
+    if(count()>=PG_MAX){ say('That\u2019s all '+PG_MAX+' drafts for this visit. Email me and I\u2019ll send more ideas.',true); return; }
+    btn.disabled=true; say('Drafting your ideas\u2026');
+    var req = PG_WORKER_URL
+      ? fetch(PG_WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:p,details:d,audience:a})})
+          .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j&&j.error||'failed'); return j.ideas; }); })
+      : new Promise(function(res){ setTimeout(function(){ res(sample(p)); },700); });
+    req.then(function(ideas){
+      if(!Array.isArray(ideas)||!ideas.length) throw new Error('empty');
+      bump(); render(ideas,p);
+      say(PG_WORKER_URL ? 'Three ideas for '+p+', fresh off the rack.' : 'Sample ideas shown. Connect the idea generator to make them custom.');
+      rack.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    }).catch(function(){
+      say('The idea generator didn\u2019t respond. Try again in a minute, or email me at '+PG_EMAIL+'.',true);
+    }).finally(function(){ btn.disabled=false; });
+  });
+})();
+</script>
 </body>
 </html>
